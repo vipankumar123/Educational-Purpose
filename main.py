@@ -19,6 +19,7 @@ class Choice_Names(str, Enum):
 
 app = FastAPI()
 
+# First Fastapi function
 @app.get("/hello")
 async def root():
     return {"message": "Hello from vipan side.."}
@@ -28,18 +29,19 @@ async def vipan():
     return {"message": "hy, how are you!!!"}
 
 
+# Path parameters
 @app.get("/item/{Item}")
 def path_func(Item):
     var_name = {"path variable": Item}
     return (var_name)
 
-
+# Query parameters
 @app.get("/query")
 def query_func(name: Union[str, None]= None, roll_no: Union[str, None]= Query(default=None, min_length=3, max_length=4)):
     var_name = {"name": name, "roll no": roll_no}
     return (var_name)
 
-
+# Choice field
 @app.get("/models/{model_name}")
 async def get_model(model_name: Choice_Names):
     if model_name.value == "one":
