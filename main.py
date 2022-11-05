@@ -1,5 +1,5 @@
 from unittest.util import _MAX_LENGTH
-from fastapi import FastAPI, Path, Query
+from fastapi import FastAPI, Query, Form, File, UploadFile
 from enum import Enum
 from typing import Union
 from pydantic import BaseModel
@@ -59,8 +59,30 @@ async def create_item(item: schema1):
     return item
 
 
+class vipan(BaseModel):
+    one : str
+    two : str
+    three : int
+
+# form data
+@app.post("/form/data")
+async def form_data(username : str = Form(), passowrd : str = Form()):
+    return ({"username": username, "password": passowrd})
+
+# file upload
+@app.post("/file/upload")
+async def file_bytes_len(file : bytes = File()):
+    return ({"file": len(file)})
 
 
+@app.post("/upload/file")
+async def file_upload(file : UploadFile):
+    return ({"file_name": file.filename, "file_content_name": file.content_type})
+
+
+@app.post("/form/data/filedata")
+async def formdata_uploadfile(file1 : UploadFile, file2: bytes = File(), name: str = Form()):
+    return ({"file_name": file1.filename, "file2_bytes": len(file2), "name": name})
 
 
 
