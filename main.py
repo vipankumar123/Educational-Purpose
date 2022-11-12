@@ -1,5 +1,5 @@
 from unittest.util import _MAX_LENGTH
-from fastapi import FastAPI, Query, Form, File, UploadFile
+from fastapi import FastAPI, Query, Form, File, UploadFile, HTTPException
 from enum import Enum
 from typing import Union
 from pydantic import BaseModel
@@ -85,11 +85,40 @@ async def formdata_uploadfile(file1 : UploadFile, file2: bytes = File(), name: s
     return ({"file_name": file1.filename, "file2_bytes": len(file2), "name": name})
 
 
+items = [1,2,3,4,5]
+
+
+# error handling
+@app.get("/error/handling")
+async def handle_error(item: int):
+    if item not in items:
+        return HTTPException(status_code= 400, detail="Item is not eqal to 2 try another value!!!")
+    return {"value": item}
 
 
 
+class Item(BaseModel):
+    name: str
+    description: Union[str, None] = None
+    price: float
+    tax: Union[float, None] = None
+
+# Declare request example data.
+    class Config:
+        schema_extra = {
+            "example": {
+                "name": "Foo",
+                "description": "A very nice Item",
+                "price": 35.4,
+                "tax": 3.2,
+            }
+        }
 
 
+@app.put("/items/{item_id}")
+async def update_item(item_id: int, item: Item):
+    results = {"item_id": item_id, "item": item}
+    return results
 
 
 

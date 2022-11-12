@@ -8,3 +8,5 @@ In this Repository I will share fastapi core concepts for my YouTube subscribers
 3. Choice field in FastAPI
 
 4. What is Request Body
+
+5. Declare request example data
