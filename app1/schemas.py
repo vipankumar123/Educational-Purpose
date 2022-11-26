@@ -4,7 +4,8 @@ from pydantic import BaseModel
 
 class ItemBase(BaseModel):
     title: str
-    description: Union[str, None] = None
+    # if not description default None value added
+    description: Union[str, None] = None 
 
 
 class ItemCreate(ItemBase):
