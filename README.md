@@ -10,3 +10,5 @@ In this Repository I will share fastapi core concepts for my YouTube subscribers
 4. What is Request Body
 
 5. Declare request example data
+
+# https://github.com/Coding-Crashkurse/FastAPI-Auth/tree/main/fastapi/app  (imp link)

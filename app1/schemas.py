@@ -20,6 +20,8 @@ class Item(ItemBase):
         orm_mode = True
 
 class UserBase(BaseModel):
+    username: str
+    is_active: bool
     email: str
 
 
