@@ -1,10 +1,11 @@
 from typing import List, Union
-
 from pydantic import BaseModel
+from pydantic import BaseModel
+
 
 class ItemBase(BaseModel):
     title: str
-    # if not description default None value added
+    # if not description, then default None value added
     description: Union[str, None] = None 
 
 

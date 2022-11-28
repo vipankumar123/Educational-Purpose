@@ -10,7 +10,6 @@ class schema1(BaseModel):
     roll_no:int
 
 
-
 class Choice_Names(str, Enum):
     one = "one"
     two = "two"
