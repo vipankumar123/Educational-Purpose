@@ -66,7 +66,8 @@ class vipan(BaseModel):
 # form data
 @app.post("/form/data")
 async def form_data(username : str = Form(), passowrd : str = Form()):
-    return ({"username": username, "password": passowrd})
+
+    return {"username": username, "password": passowrd}
 
 # file upload
 @app.post("/file/upload")
@@ -118,6 +119,13 @@ class Item(BaseModel):
 async def update_item(item_id: int, item: Item):
     results = {"item_id": item_id, "item": item}
     return results
+
+
+@app.get('/test1')
+def unit_test1():
+    return {"msg": "My first test"}
+
+
 
 
 
