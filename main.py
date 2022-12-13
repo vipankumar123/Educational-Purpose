@@ -126,9 +126,13 @@ def unit_test1():
     return {"msg": "My first test"}
 
 
-
-
-
+@app.post('/post_test')
+def unit_test2(Item:vipan):
+    return {
+        'one':Item.one,
+        'two': Item.two,
+        'three': Item.three
+    }
 
 
 
