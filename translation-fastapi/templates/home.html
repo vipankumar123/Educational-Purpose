@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Translation App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+        h1 {
+            text-align: center;
+            margin-top: 50px;
+        }
+        form {
+            text-align: center;
+            margin-top: 20px;
+        }
+        input[type="text"] {
+            width: 80%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        input[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .translated-box {
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin-top: 20px;
+            background-color: #f8f8f8;
+            box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+        }
+        .download-link {
+            display: block;
+            margin-top: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>English to Spanish Translation</h1>
+        <form action="/translate" method="post">
+            <input type="text" id="english_input" name="english_input" placeholder="Enter English Text">
+            <br><br>
+            <input type="submit" value="Translate">
+        </form>
+        {% if translated_text %}
+        <div class="translated-box">
+            <h2>Translated Spanish Text:</h2>
+            <p>{{ translated_text }}</p>
+            <a class="download-link" href="/download?text={{ translated_text }}">Download Translated Text</a>
+        </div>
+        {% endif %}
+    </div>
+
+    <script>
+        // JavaScript function to redirect to the same page after downloading
+        function redirectToHome() {
+            window.location.href = "/";
+        }
+    </script>
+</body>
+</html>

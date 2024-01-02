@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chat App</title>
+</head>
+<body>
+    <h1>Chat Room</h1>
+    <div id="messages"></div>
+    <input type="text" id="message" autocomplete="off">
+    <button onclick="sendMessage()">Send</button>
+    <script>
+        var user_id = "{{ user_id }}";  // Access the user ID from the template
+        var socket = new WebSocket(`ws://${window.location.host}/ws/${user_id}`);
+
+        socket.onmessage = function (event) {
+            var messages = document.getElementById('messages');
+            messages.innerHTML += '<p>' + event.data + '</p>';
+        };
+
+        function sendMessage() {
+            var messageInput = document.getElementById('message');
+            var message = messageInput.value;
+            socket.send(message);
+            messageInput.value = '';
+        }
+    </script>
+</body>
+</html>
