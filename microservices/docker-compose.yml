@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  user_service:
+    build:
+      context: ./user_service
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    networks:
+      - fastapi_network
+
+  task_service:
+    build:
+      context: ./task_service
+      dockerfile: Dockerfile
+    ports:
+      - "8001:8001"
+    networks:
+      - fastapi_network
+    depends_on:
+      - user_service
+
+networks:
+  fastapi_network:
+    driver: bridge
